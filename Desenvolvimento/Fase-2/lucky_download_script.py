@@ -24,19 +24,9 @@ def getDate():
     return datetime.date.today().strftime("%Y-%m-%d")
 
 print ("# Baixando Arquivos... \n\n")
-try:
 	f = downloadFile(link_megasena)
-except Exception, e:
-	e = sys.exc_info()[0]
-else:
-	print ("# Falha ao efetuar o download do arquivo... \n\n")
 
 print ("# Salvando Arquivos No diretorio... \n\n")
-try:
 	putFileInPath(f, file_path)
-except Exception, e:
-	e = sys.exc_info()[0]
-else:
-	print ("# Falha ao salvar o arquivo \n\n")
 
 print ("# Script Finalizado com sucesso:!!!")
