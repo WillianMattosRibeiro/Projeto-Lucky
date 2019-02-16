@@ -13,7 +13,7 @@ def format_error_as_string(exception):
 
 try:
     html_text = requests.get('http://loterias.caixa.gov.br/wps/portal/loterias/landing/megasena').text
-    resultados = re.search(r'https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.\b.([-a-zA-Z0-9@:%_\+.~#?&//=]*)\.zip', html_content)
+    resultados = re.search(r'https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.\b.([-a-zA-Z0-9@:%_\+.~#?&//=]*)\.zip', html_text)
 
     print resultados
 
