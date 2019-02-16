@@ -28,14 +28,14 @@ def getActualDate():
 
 print ("# Baixando Arquivos... \n\n")
 #Download Resultado MegaSena
-downloadAndExtract('http://www1.caixa.gov.br/loterias/_arquivos/loterias/D_megase.zip', putDateInPath(os.getcwd() + '/data/raw/MegaSena/'))
+downloadAndExtract('http://www1.caixa.gov.br/loterias/_arquivos/loterias/D_megase.zip', putDateInPath(os.getcwd() + '/output/data/raw/MegaSena/'))
 
 #Download Resultado Quina
 #downloadAndExtract('http://www1.caixa.gov.br/loterias/_arquivos/loterias/D_quina.zip', putDateInPath('./dados/Quina/'))
 
 print("# Carregando Dataframes...\n\n")
 #Carregando Arquivo em lista de Dataframe
-list_megasena = pd.read_html(os.getcwd() + "/data/raw/Megasena/" + getActualDate() + "/D_MEGA.HTM")
+list_megasena = pd.read_html(os.getcwd() + "/output/data/raw/Megasena/" + getActualDate() + "/D_MEGA.HTM")
 #list_quina = pd.read_html("dados/Quina/" + getActualDate() + "/D_QUINA.HTM")
 
 #Concatenando lista de dataframes
@@ -44,7 +44,7 @@ df_megasena = pd.concat(list_megasena)
 
 print ("# Salvando Arquivos CSV...\n\n")
 #Salvando Resultado em .CSV
-dataframeMegaSenaToCsv(os.getcwd() + "/data/swamp/Megasena/" + getActualDate())
+dataframeMegaSenaToCsv(os.getcwd() + "/output/data/swamp/Megasena/" + getActualDate())
 #dataframeQuinaToCsv("planilha/Quina/" + getActualDate())
 
 print ("# Script Finalizado com sucesso:!!!")
