@@ -2,3 +2,7 @@
 input
 output
 doc
+*.pyc
+source/*.pyc
+source/v2/packages/__init__.pyc
+source/v2/__init__.pyc
