@@ -7,7 +7,8 @@ def main(args=None):
     if type_of_process == 'ingest':
         import modules.ingestion as ingest
         print("Running Ingestion!")
-        ingest.run(args)
+        p = ingest.Processamento()
+        p.run(args)
     elif type_of_process == 'process':
         print("Process not implemented Yet")
         pass

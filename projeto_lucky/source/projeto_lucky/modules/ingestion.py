@@ -1,7 +1,10 @@
 from ..packages.custom import *
 
-class Processamento(object):
-    def run(args=None):
+class Processamento:
+    def __init__(self):
+        pass
+
+    def run(self, args=None):
         game_name = str(args[1])
         print_console_presentation('Resultados Jogos Caixa Economica Feredal', game_name)
 
@@ -10,6 +13,7 @@ class Processamento(object):
 
             raw_path = put_date_in_path_string(os.getcwd() + "/output/data/raw/" + variables_dict['game_type_name'] + "/")
             swamp_path = put_date_in_path_string(os.getcwd() + "/output/data/swamp/" + variables_dict['game_type_name'] + "/")
+            lake_path = put_date_in_path_string(os.getcwd() + "/output/data/lake/" + variables_dict['game_type_name'] + "/")
                         
             print_console_presentation('Baixando Arquivos...', game_name)
             zip_file = download_results('http://www1.caixa.gov.br/loterias/_arquivos/loterias/' + variables_dict['game_type_zip_file_name'])
@@ -20,11 +24,14 @@ class Processamento(object):
             print_console_presentation('Carregando Dados do Raw...', game_name)
             list_megasena = pd.read_html(raw_path + "/" + variables_dict['game_type_extracted_file_name'], header=0, thousands=' ')[0]
 
+            print_console_presentation('Carregando Arquivos em CSV Swamp...', game_name)
+            dataframe_to_csv(swamp_path, list_megasena)
+
             print_console_presentation('Formatando Dataframe...', game_name)
             df_result = reform_dataframe(list_megasena)
 
-            print_console_presentation('Carregando Arquivos em CSV...', game_name)
-            dataframe_to_csv(swamp_path, df_result)
+            print_console_presentation('Carregando Arquivos em CSV lake...', game_name)
+            dataframe_to_csv(lake_path, df_result)
 
             print_console_presentation('Ingestao Finalizada com sucesso... ', game_name)
         except Exception as e:

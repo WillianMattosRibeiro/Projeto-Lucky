@@ -20,9 +20,16 @@ def put_date_in_path_string(path):
     return path + datetime.date.today().strftime("%Y-%m-%d") + "/"
 
 def dataframe_to_csv(path, df):
-	if not os.path.exists(path):
-		os.makedirs(path)
-	df.to_csv(path + "/nao_tratado.csv",sep=";", encoding="utf-8", header=1)
+    if "swamp" in path:
+        file_status = "nao_tratado"
+    elif "lake" in path:
+        file_status = "tratado"
+
+    print("File Status: " + file_status)
+
+    if not os.path.exists(path):
+        os.makedirs(path)
+    df.to_csv(path + "/" + file_status + ".csv",sep=";", encoding="utf-8", header=1)
 
 def get_actual_date():
     return datetime.date.today().strftime("%Y-%m-%d")
@@ -44,6 +51,10 @@ def reform_dataframe(df_megasena):
         i+=1
 
     df_formatado = df_formatado.set_index('Concurso')
+    df_formatado['Cidade'] = df_formatado.Cidade.str.replace(r'(^.*nan.*$)', '')
+    df_formatado['Cidade'] = df_formatado.Cidade.str.replace(r'(\&nbsp)', '')
+    df_formatado['UF'] = df_formatado.UF.str.replace(r'(^.*nan.*$)', '')
+    df_formatado['UF'] = df_formatado.UF.str.replace(r'(\&nbsp)', '')
 
     return df_formatado
 
