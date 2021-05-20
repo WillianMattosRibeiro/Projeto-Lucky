@@ -10,6 +10,7 @@ from console_view import get_error_formated_as_string, print_console_presentatio
 
 def download_results(url):
     r = requests.get(url, stream='true')
+    # Todo: Tratar erro para python 3
     zip_file = zipfile.ZipFile(StringIO.StringIO(r.content))
     return zip_file
 
