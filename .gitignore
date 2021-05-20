@@ -6,3 +6,5 @@ doc
 source/*.pyc
 source/v2/packages/__init__.pyc
 source/v2/__init__.pyc
+
+projeto_lucky/.idea/workspace.xml
