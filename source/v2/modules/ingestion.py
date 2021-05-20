@@ -27,5 +27,7 @@ class Processamento(object):
             dataframe_to_csv(swamp_path, df_result)
 
             print_console_presentation('Ingestao Finalizada com sucesso... ', game_name)
+
+            print_console_presentation('Demonstracao gitflow')
         except Exception as e:
             print get_error_formated_as_string(e)
